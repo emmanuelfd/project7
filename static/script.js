@@ -1,5 +1,5 @@
 
-//to clear the page when reload
+// to clear the page when reload
 document.getElementById("dialogue").value = ""
 document.getElementById("msg").value = ""
 
@@ -20,7 +20,7 @@ function enter_address() {
     var xhr = new XMLHttpRequest();
 
     xhr.open("POST", "http://127.0.0.1:5000/GrandPy", true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.setRequestHeader("Content-Type", "application/json");
     //replace below to remove /n from textarea
     entry_user = document.getElementById("msg").value.replace(/\n/g, "")
     entry_user = entry_user.trim()//remove blank if needed
