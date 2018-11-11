@@ -4,11 +4,14 @@
 from flask import Flask,request,url_for, redirect, render_template, abort
 import module
 import json
-import logging as lg
+from flask_cors import CORS
+import os
+#import logging as lg
 
 #lg.basicConfig(level=lg.DEBUG)
 
 app = Flask(__name__)
+CORS(app)
 
 
 
@@ -31,11 +34,11 @@ def message():
         url_wiki = question.wiki()
         print(url_wiki)
         #lg.warning(url_wiki)
-        wikiblabla = module.wikipedia(url_wiki)
-        print(wikiblabla.Pageid)
+        wiki_description = module.wikipedia(url_wiki)
+        print(wiki_description.Pageid)
 
 
-        dico = {"google": url_google, "wiki": wikiblabla.wikiword()}
+        dico = {"google": url_google, "wiki": wiki_description.wikiword()}
         json_data = json.dumps(dico)
 
         return json_data
@@ -85,4 +88,6 @@ def redirection_google():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT",8080))
+    app.run(host='0.0.0.0',port=port)
+    #app.run(debug=True)
