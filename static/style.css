@@ -1,11 +1,11 @@
-
+/*
 body
 {
     background-color: black;
     color: white;
 }
 
-/*
+
 {
    margin-top: 10px; /* Marge extérieure de 50px */
  /*  margin-left: 20px; /* Marge extérieure de 50px */
@@ -41,33 +41,31 @@ align-items: center;
 }
 
 
-/*
-margin: auto;
-margin-top: 20px;
-#dialogue_conteneur
-{
-display: flex;
-justify-content: center;
-margin-top: 20px;
-}
 
-#msg_conteneur
-{
-display: flex;
-justify-content: center;
-margin-top: 20px;
-}
-
-
-#google
-{
- margin: 0 auto
-}
-*/
-
-#conteneur_footer
-{
+#conteneur_footer {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+}
+
+@media screen and (max-width: 980px)
+{
+    #aside_header
+       {
+         width: auto;
+       }
+
+    textarea
+       {
+	     width: 100%;
+       }
+
+
+ /*
+    img
+       {
+         max-width:100%;
+         height:auto;
+       }
+*/
 }

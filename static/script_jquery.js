@@ -16,14 +16,14 @@ $('#msg').keypress(function(e) {
     $(function () {
 
 
-        entry_user = document.getElementById("msg").value.replace(/\n/g, "")
+        entry_user = document.getElementById("msg").value.replace(/\n/g, "")//remove newline
         entry_user = entry_user.trim()//remove blank if needed
-        //entry_user = "Paris"
         entry_grandpy = grandpy[Math.floor(Math.random() * 3)]//pick up 1 random intro from grandpy
 
         $.ajax({
            type : "POST", // Le type de la requête HTTP.
-           url : "http://127.0.0.1:5000/GrandPy", // La ressource ciblée
+           //url : "http://127.0.0.1:5000/GrandPy", //
+            url : "GrandPy", // La ressource ciblée
            data : "msg=" + entry_user,
            dataType : "json",
            success: function(data)
@@ -32,6 +32,7 @@ $('#msg').keypress(function(e) {
                    reponse = (data["google"]);
                    console.log(reponse);
                    //console.log(entry_user);
+                   //remove id=plan to clear any existing map
                    document.getElementById("google").removeChild(document.getElementById("plan"));
 
                    var img = document.createElement("img");
@@ -46,7 +47,7 @@ $('#msg').keypress(function(e) {
 
                    var wiki_string = (data["wiki"]);
 
-                   //add in the list entries
+                   //add in the list [dialogues] to be able to retreive previous request
 
                    dialogues.unshift('\n*-*-*-*\n\n')
                    dialogues.unshift(wiki_string)
@@ -54,8 +55,9 @@ $('#msg').keypress(function(e) {
                    dialogues.unshift(entry_user + "\n")
 
 
-                   document.getElementById("dialogue").value = ''//empty dialogue as it will be added again
+                   document.getElementById("dialogue").value = ''//clear dialogue as it will be added again
 
+                   //re-add the whole list [dialogues]
                    var i;
                    for (i = 0; i < dialogues.length; ++i) {
                        document.getElementById("dialogue").value += dialogues[i]
