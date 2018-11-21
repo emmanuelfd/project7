@@ -48,35 +48,3 @@ class TestParsing:
         question = script.parsing(self.localisation_numero)
         assert question.wiki() == 'https://fr.wikipedia.org/w/api.php?action=query&list=search&srsearch=9%20rue%20las%20cases&formatversion=2&prop=revisions&rvprop=content&format=json&formatversion=2'
 
-
-
-##
-##unit tests for object wiki.
-##
-
-
-class Testwikipedia:
-
-    results = '{"query":{"searchinfo":{"totalhits":514},"search":[{"ns":0,"title":"Rue Las-Cases","pageid":1244052}]}}'
-
-
-
-#unit tests for attributes
-    def test_get_Pageid(self):##manque url dans la creation objet wikipedia ...
-        question = script.wikipedia(self.results)
-        assert question.Pageid == '1244052'
-
-
-#***# on doit se connecter a wiki request pour tester.
-
-#def test_request_api_wiki(monkeypatch):
-    ##results = {"query":{"searchinfo":{"totalhits":514},"search":[{"ns":0,"title":"Rue Las-Cases","pageid":1244052}]}}
-    ##results = '<p>La <b>rue Las Cases</b> est une voie située dans le quartier des Invalides du <span>/' \
-      ##        '<abbr class="abbr" title="Septième">7<sup>e</sup></abbr> arrondissement</span> de Paris.</p>'
-    #results = 'ab'
-    #def mockreturn(requests):
-    #   return results
-
-    #monkeypatch.setattr(requests, 'get', mockreturn)
-    ##wikiped = script.wikipedia('url_wiki')
-    #assert script.wikipedia.wikiword('ab') == 'ab'

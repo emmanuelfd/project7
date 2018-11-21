@@ -43,6 +43,7 @@ class parsing():
                 pass
 
             i+=1
+        print(self.placeToSearch)
 
 
     def google(self):
