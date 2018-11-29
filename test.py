@@ -1,5 +1,6 @@
 import module as script
 import requests
+import json 
 
 class TestParsing:
     stopword = 'afin a ailleurs oxford'
@@ -48,3 +49,17 @@ class TestParsing:
         question = script.parsing(self.localisation_numero)
         assert question.wiki() == 'https://fr.wikipedia.org/w/api.php?action=query&list=search&srsearch=9%20rue%20las%20cases&formatversion=2&prop=revisions&rvprop=content&format=json&formatversion=2'
 
+        
+        
+#***# on doit se connecter a wiki request pour tester.
+    def test_request_api_wiki(monkeypatch):
+
+        results =[{"batchcomplete":"true","continue":{"sroffset":10,"continue":"-||revisions"},"query":{"searchinfo":{"totalhits":15622},"search":[{"ns":0,"title":"Dijon","pageid":3235267,"timestamp":"2018-11-19T11:49:51Z"}]}}]
+
+        def mockreturn(requests):
+            return json.dumps(results)
+  
+    monkeypatch.setattr(requests, 'get', mockreturn)
+
+    x = script.wikipedia(results)
+    assert x.Pageid == '3235267'
